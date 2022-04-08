@@ -1,0 +1,1938 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Deploy Api",
+    "version": "v3"
+  },
+  "servers": [
+    {
+      "url": "http://dev-deploy.heretto.com/v3",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/bookmarks": {
+      "get": {
+        "tags": [
+          "Bookmarks"
+        ],
+        "operationId": "bookmarks",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Bookmarks"
+        ],
+        "operationId": "updateBookmarks",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Bookmarks"
+        ],
+        "operationId": "createBookmarks",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments": {
+      "get": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "Get all deployments from an organization",
+        "operationId": "getDeployments",
+        "parameters": [
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Deployments"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "Create a new deployment within organization",
+        "operationId": "createDeployment",
+        "parameters": [
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentConfiguration"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments/{deploymentId}": {
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Get deployment's metadata",
+        "operationId": "mapRootInfo",
+        "parameters": [
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "Content API token from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "edit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentRootInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "Edit a deployment",
+        "operationId": "updateDeployment",
+        "parameters": [
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeploymentConfiguration"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "Delete a deployment",
+        "operationId": "createDeployment_1",
+        "parameters": [
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments/{deploymentId}/services/publish": {
+      "post": {
+        "tags": [
+          "Deployments"
+        ],
+        "summary": "Publish a  deployment",
+        "operationId": "startPublish",
+        "parameters": [
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeploymentPublishStartInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments/{deploymentId}/search": {
+      "post": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Search for a text within the whole deployment for a set language",
+        "operationId": "mapSearch",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "string - document language to be searched"
+          },
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "Content API token from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "text/plain": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/fileset/{fileSetId}/object/{uuid}": {
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "operationId": "rawContent",
+        "parameters": [
+          {
+            "name": "oid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RawContent"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/fileset/{fileSetId}/object/{uuid}/content": {
+      "get": {
+        "tags": [
+          "Binary Files"
+        ],
+        "operationId": "localBinaryFile",
+        "parameters": [
+          {
+            "name": "oid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileSetId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "jwt",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "responseContentDisposition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments/{deploymentId}/structure": {
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Get deployment structure",
+        "operationId": "structure",
+        "parameters": [
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "Content API token from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "full",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-path",
+            "in": "query",
+            "description": "path to the file within the deployment as described in /structure",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-id",
+            "in": "query",
+            "description": "uuid of the resource",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "edit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "depth",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentApiNavTreeElement"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments/{deploymentId}/groups": {
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Get groups of a file within the deployment",
+        "operationId": "groups",
+        "parameters": [
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "Content API token from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-path",
+            "in": "query",
+            "description": "path to the file within the deployment as described in /structure",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-id",
+            "in": "query",
+            "description": "uuid of the resource",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentApiGroupsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments/{deploymentId}/contribute/summary/changes": {
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "operationId": "getContributeChanges",
+        "parameters": [
+          {
+            "name": "oid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-path",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startOffset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "endOffset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributeChangeResults"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments/{deploymentId}/contribute/summary/aggregate": {
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "operationId": "getContributeChangesAggregate",
+        "parameters": [
+          {
+            "name": "oid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-path",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startOffset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "endOffset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContributeSummaryAggregate"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments/{deploymentId}/content": {
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Get file content for a given path/uuid within the deployment",
+        "operationId": "content",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "string - document language for a content"
+          },
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "Content API token from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-path",
+            "in": "query",
+            "description": "path to the file within the deployment as described in /structure",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-resourceid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceid-versionId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-id",
+            "in": "query",
+            "description": "uuid of the resource",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "include-metadata",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "view",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "element-id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "edit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "add-headers",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentApiContentResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/org/{oid}/deployments/{deploymentId}/contentForPrint": {
+      "get": {
+        "tags": [
+          "Content"
+        ],
+        "summary": "Get print-version of the file content for a given path/uuid within the deployment",
+        "operationId": "contentForPrint",
+        "parameters": [
+          {
+            "name": "oid",
+            "in": "path",
+            "description": "organization id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "deploymentId",
+            "in": "path",
+            "description": "deployment id from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "X-Deploy-API-Auth",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "Content API token from Heretto",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-path",
+            "in": "query",
+            "description": "path to the file within the deployment as described in /structure",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-resourceid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceid-versionId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "for-id",
+            "in": "query",
+            "description": "uuid of the resource",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "audience",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentForPrintResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DeploymentConfiguration": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "mapUuid": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "MANUAL_DEPLOY",
+              "AUTO_SYNC"
+            ]
+          },
+          "audienceNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "locales": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "addLocalePrefixToHrefs": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DeploymentPublishStartInfo": {
+        "type": "object",
+        "properties": {
+          "started": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        }
+      },
+      "ContentApiNavLink": {
+        "type": "object",
+        "properties": {
+          "shortDescription": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "contentHref": {
+            "type": "string"
+          },
+          "outputclasses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "href": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "FacetResponse": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValueWithLabel"
+            }
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "HierarchicalFacet": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "MapSearchHit": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "outputclasses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "breadcrumbs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentApiNavLink"
+            }
+          },
+          "highlights": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "standardMetadata": {
+            "$ref": "#/components/schemas/MetadataForResponse"
+          },
+          "customMetadata": {
+            "$ref": "#/components/schemas/MetadataForResponse"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      },
+      "MetadataFieldWithValue": {
+        "type": "object",
+        "properties": {
+          "humanReadable": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValueWithLabel"
+            }
+          }
+        }
+      },
+      "MetadataForResponse": {
+        "type": "object",
+        "properties": {
+          "taxonomy": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MetadataFieldWithValue"
+            }
+          },
+          "date": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MetadataFieldWithValue"
+            }
+          },
+          "label": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MetadataFieldWithValue"
+            }
+          },
+          "text_single_Line": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MetadataFieldWithValue"
+            }
+          }
+        }
+      },
+      "SearchResponse": {
+        "type": "object",
+        "properties": {
+          "totalResults": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MapSearchHit"
+            }
+          },
+          "facets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FacetResponse"
+            }
+          },
+          "hierarchicalFacets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HierarchicalFacet"
+            }
+          }
+        }
+      },
+      "ValueWithLabel": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "humanReadable": {
+            "type": "string"
+          }
+        }
+      },
+      "RawContent": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          }
+        }
+      },
+      "DeploymentInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/DeploymentConfiguration"
+          },
+          "status": {
+            "$ref": "#/components/schemas/DeploymentStatus"
+          }
+        }
+      },
+      "DeploymentPublishResult": {
+        "type": "object",
+        "properties": {
+          "started": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "finished": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "successful": {
+            "type": "boolean"
+          },
+          "warningMessage": {
+            "type": "string"
+          },
+          "errorMessage": {
+            "type": "string"
+          }
+        }
+      },
+      "DeploymentStatus": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "OK",
+              "PUBLISHING",
+              "ERROR"
+            ]
+          },
+          "currentPublish": {
+            "$ref": "#/components/schemas/DeploymentPublishResult"
+          },
+          "lastPublish": {
+            "$ref": "#/components/schemas/DeploymentPublishResult"
+          }
+        }
+      },
+      "Deployments": {
+        "type": "object",
+        "properties": {
+          "deployments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DeploymentInfo"
+            }
+          }
+        }
+      },
+      "DeploymentRootInfoResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "sitemeta": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "availableLocales": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ContentApiNavTreeElement": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          },
+          "shortdesc": {
+            "type": "string",
+            "deprecated": true
+          },
+          "meta": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "externalLink": {
+            "type": "boolean"
+          },
+          "audienceContent": {
+            "type": "boolean"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentApiNavTreeElement"
+            }
+          },
+          "sys": {
+            "$ref": "#/components/schemas/Sys"
+          },
+          "contributeStatus": {
+            "type": "string"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "outputclasses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "topicId": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "Sys": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          }
+        }
+      },
+      "ContentApiGroupsResponse": {
+        "type": "object",
+        "properties": {
+          "groups": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ContentApiNavTreeElement"
+            }
+          },
+          "groupsByName": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ContentApiNavTreeElement"
+            }
+          }
+        }
+      },
+      "ContributeChangeResult": {
+        "type": "object",
+        "properties": {
+          "linkToPage": {
+            "$ref": "#/components/schemas/ContentApiNavLink"
+          },
+          "changeLocation": {
+            "type": "string"
+          },
+          "changeType": {
+            "type": "string"
+          },
+          "sys": {
+            "$ref": "#/components/schemas/Sys"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "ContributeChangeResults": {
+        "type": "object",
+        "properties": {
+          "totalResults": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContributeChangeResult"
+            }
+          }
+        }
+      },
+      "ContributeSummaryAggregate": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusToCount": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      },
+      "AlternateLanguageHRef": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          }
+        }
+      },
+      "ChunkedSectionResponse": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "topicId": {
+            "type": "string"
+          },
+          "sys": {
+            "$ref": "#/components/schemas/Sys"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChunkedSectionResponse"
+            }
+          }
+        }
+      },
+      "ContentApiContentResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "breadcrumbs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentApiNavLink"
+            }
+          },
+          "binaryUrl": {
+            "type": "string"
+          },
+          "standardMetadata": {
+            "$ref": "#/components/schemas/MetadataForResponse"
+          },
+          "customMetadata": {
+            "$ref": "#/components/schemas/MetadataForResponse"
+          },
+          "headers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Header"
+            }
+          },
+          "alternateLanguages": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/AlternateLanguageHRef"
+            }
+          },
+          "sys": {
+            "$ref": "#/components/schemas/Sys"
+          },
+          "versions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Version"
+            }
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentApiNavLink"
+            }
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "next": {
+            "$ref": "#/components/schemas/ContentApiNavLink"
+          },
+          "outputclasses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "audienceContent": {
+            "type": "boolean"
+          },
+          "relatedLinks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentApiNavLink"
+            }
+          },
+          "topicId": {
+            "type": "string"
+          },
+          "previous": {
+            "$ref": "#/components/schemas/ContentApiNavLink"
+          },
+          "redirect": {
+            "$ref": "#/components/schemas/RedirectResponse"
+          },
+          "href": {
+            "type": "string"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/ContentApiNavLink"
+          },
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "chunked_sections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChunkedSectionResponse"
+            }
+          }
+        }
+      },
+      "Header": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "RedirectResponse": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          },
+          "audience": {
+            "type": "string"
+          }
+        }
+      },
+      "Version": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "href": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "containedTopicHref": {
+            "type": "string"
+          }
+        }
+      },
+      "ContentForPrintResponse": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    }
+  }
+}
